@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TestRunner</title>
+</head>
+<style>
+    .passingTest {
+        color: greenyellow;
+    }
+
+    .failingTest {
+        color: red;
+    }
+
+    body {
+        background-color: rgb(22, 29, 29);
+    }
+
+    details {
+        color: greenyellow;
+        margin: 0.5em;
+    }
+
+    details>summary:hover {
+        background-color: darkgreen;
+    }
+
+    details.failingTest>summary:hover {
+        background-color: darkred;
+    }
+</style>
+
+<body>
+    <script type="module" src="test_bundle.js"></script>
+</body>
+
+</html>
