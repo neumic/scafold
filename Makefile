@@ -1,7 +1,7 @@
 all: bundle static_copy
 
 bundle: ts
-	rollup build/ts/main.js --format iife --name "bundle" --file dist/prod_bundle.js
+	rollup build/ts/Main.js --format iife --name "bundle" --file dist/prod_bundle.js
 	rollup build/test/TestMain.js --format iife --name "bundle" --file dist/test_bundle.js
 
 static_copy:

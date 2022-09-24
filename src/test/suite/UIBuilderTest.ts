@@ -1,6 +1,6 @@
 import { RootViewComponent } from "../../ts/UI/RootViewComponent.js";
 import { UIBuilder } from "../../ts/UI/UIBuilder.js";
-import { assertEquals, assertInstanceOf, fail } from "../asserts.js";
+import { assertEquals, assertInstanceOf, fail } from "../Asserts.js";
 import { MockDocumentWrapper } from "../mocks/MockDocumentWrapper.js";
 import { TestCase } from "../TestCase.js";
 

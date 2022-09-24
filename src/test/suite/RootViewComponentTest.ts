@@ -2,7 +2,7 @@ import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
 import { AbstractViewComponent } from "../../ts/UI/AbstractViewComponent.js";
 import { DocumentWrapper } from "../../ts/UI/DocumentWrapper.js";
 import { RootViewComponent } from "../../ts/UI/RootViewComponent.js";
-import { assertEquals, fail } from "../asserts.js";
+import { assertEquals, fail } from "../Asserts.js";
 import { TestCase } from "../TestCase.js";
 
 export class RootViewComponentTest extends TestCase {

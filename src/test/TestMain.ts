@@ -1,5 +1,5 @@
 import { AssertionError } from './AssertionError.js';
-import { testSuite } from './suite/testSuite.js';
+import { testSuite } from './suite/TestSuite.js';
 import { TestCase } from "./TestCase.js";
 
 async function runAllTests() {
@@ -19,8 +19,8 @@ async function runAllTests() {
     };
 }
 
-async function runTestCase(testCase: TestCase, test: () => void, 
-        testCaseElement: HTMLDetailsElement, testListElement: HTMLUListElement): Promise<void> {
+async function runTestCase(testCase: TestCase, test: () => void,
+    testCaseElement: HTMLDetailsElement, testListElement: HTMLUListElement): Promise<void> {
     const testResultElement = document.createElement('li');
     try {
         console.debug(`running setup for: ${test.name}`);
@@ -45,7 +45,7 @@ async function runTestCase(testCase: TestCase, test: () => void,
         console.warn(failure);
         testResultElement.classList.add("failingTest");
         testCaseElement.classList.add("failingTest");
-        testCaseElement.open = true
+        testCaseElement.open = true;
 
         console.debug(`running teardown for ${test.name}`);
         testCase.teardown();

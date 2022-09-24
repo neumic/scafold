@@ -1,5 +1,5 @@
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
-import { assertTrue } from "../asserts.js";
+import { assertTrue } from "../Asserts.js";
 import { TestCase } from "../TestCase.js";
 
 export class UIMessageTest extends TestCase {

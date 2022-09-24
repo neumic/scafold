@@ -1,7 +1,7 @@
 import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
 import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
-import { assertEquals } from "../asserts.js";
+import { assertEquals } from "../Asserts.js";
 import { TestCase } from "../TestCase.js";
 
 export class UIMessageBusTest extends TestCase {
