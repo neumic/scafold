@@ -1,4 +1,4 @@
-import { testSuite } from './suite/ClientTestSuite.js';
+import { testSuite } from './suite/ServerTestSuite.js';
 import { TestCaseResult } from './TestResult.js';
 import { runTestCase } from './TestRunner.js';
 
@@ -19,14 +19,14 @@ async function runAllTests() {
 
 function printTests(testCaseResults: TestCaseResult[]) {
     for (const testCaseResult of testCaseResults) {
-        console.log(testCaseResult.testClassName);
+        console.log(testCaseResult.testClassName + ":");
         for (const testResult of testCaseResult.testResults) {
             if (testResult.testResult === "Success") {
-                console.log('\x1b[32m%s\x1b[0m', testResult.testName + " SUCCESSFUL");
+                console.log('\t+\x1b[32m%s\x1b[0m', testResult.testName + " SUCCESSFUL");
             } else if (testResult.testResult === "Failure") {
-                console.log('\x1b[31m%s\x1b[0m', testResult.testName + " FAILED with message: " + testResult.testMessage);
+                console.log('\t+\x1b[31m%s\x1b[0m', testResult.testName + " FAILED with message: " + testResult.testMessage);
             } else if (testResult.testResult === "Error") {
-                console.log('\x1b[31m%s\x1b[0m', testResult.testName + " ERRORED with message: " + testResult.testMessage);
+                console.log('\t+\x1b[31m%s\x1b[0m', testResult.testName + " ERRORED with message: " + testResult.testMessage);
             }
         }
     }
