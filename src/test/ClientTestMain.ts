@@ -1,0 +1,51 @@
+import { testSuite } from './suite/ClientTestSuite.js';
+import { TestCaseResult } from './TestResult.js';
+import { runTestCase } from './TestRunner.js';
+
+async function runAllTests() {
+    for (const testCase of testSuite) {
+        const results: TestCaseResult[] = [];
+
+        for (const test of testCase.getTests()) {
+            results.push(await runTestCase(testCase, test));
+        }
+
+        printTests(results);
+    };
+}
+
+function printTests(testCaseResults: TestCaseResult[]) {
+    for (const testCaseResult of testCaseResults) {
+        const testListElement = document.createElement('ul');
+        const testCaseElement = document.createElement('details');
+        const summaryElement = document.createElement('summary');
+
+        summaryElement.append(testCaseResult.testClassName);
+        testCaseElement.append(summaryElement);
+        testCaseElement.append(testListElement);
+        document.body.append(testCaseElement);
+
+        for (const testResult of testCaseResult.testResults) {
+            const testResultElement = document.createElement('li');
+
+            if (testResult.testResult === "Success") {
+                testResultElement.append(testResult.testName + " SUCCESSFUL");
+                testResultElement.classList.add("passingTest");
+            } else if (testResult.testResult === "Failure") {
+                testResultElement.append(testResult.testName + " FAILED with message: " + testResult.testMessage);
+                testResultElement.classList.add("failingTest");
+                testCaseElement.classList.add("failingTest");
+                testCaseElement.open = true;
+            } else if (testResult.testResult === "Error") {
+                testResultElement.append(testResult.testName + " ERRORED with message: " + testResult.testMessage);
+                testResultElement.classList.add("failingTest");
+                testCaseElement.classList.add("failingTest");
+                testCaseElement.open = true;
+            }
+
+            testListElement.append(testResultElement);
+        }
+    }
+}
+
+runAllTests();
