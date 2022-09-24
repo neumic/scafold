@@ -2,4 +2,5 @@ dist/
 dist/**
 build/
 build/**
+node_modules/
 .vscode
