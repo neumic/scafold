@@ -10,12 +10,6 @@ export class UIBuilder {
         const rootViewComponent = new RootViewComponent(document, messageBus,
         );
 
-        const websocket = new WebSocket("ws://localhost:3000");
-        websocket.onmessage = (data) => {
-            console.log(data);
-            websocket.send(data + " HUH?");
-        };
-
         document.getBodyElement().appendChild(rootViewComponent.getElement());
 
         return rootViewComponent;

@@ -1,23 +1,10 @@
 import { testSuite } from './suite/ServerTestSuite.js';
 import { TestCaseResult } from './TestResult.js';
-import { runTestCase } from './TestRunner.js';
-
-async function runAllTests() {
-    console.debug = (message) => { };
-    console.warn = (message) => { };
-
-    for (const testCase of testSuite) {
-        const results: TestCaseResult[] = [];
-
-        for (const test of testCase.getTests()) {
-            results.push(await runTestCase(testCase, test));
-        }
-
-        printTests(results);
-    };
-}
+import { runAllTests } from './TestRunner.js';
 
 function printTests(testCaseResults: TestCaseResult[]) {
+    console.debug = (message) => { };
+    console.warn = (message) => { };
     for (const testCaseResult of testCaseResults) {
         console.log(testCaseResult.testClassName + ":");
         for (const testResult of testCaseResult.testResults) {
@@ -32,4 +19,4 @@ function printTests(testCaseResults: TestCaseResult[]) {
     }
 }
 
-runAllTests();
+runAllTests(testSuite, printTests);

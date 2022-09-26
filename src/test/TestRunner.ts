@@ -2,9 +2,23 @@ import { AssertionError } from "./AssertionError.js";
 import { TestCase } from "./TestCase.js";
 import { TestCaseResult, TestResult } from "./TestResult.js";
 
+export async function runAllTests(testSuite: TestCase[], printTests: (results: TestCaseResult[]) => void) {
+    const testCaseResults: TestCaseResult[] = [];
+    for (const testCase of testSuite) {
+        const testResults: TestResult[] = [];
 
-export async function runTestCase(testCase: TestCase, test: () => void): Promise<TestCaseResult> {
-    const testResultList: TestResult[] = [];
+        for (const test of testCase.getTests()) {
+            testResults.push(await runTest(testCase, test));
+        }
+
+        testCaseResults.push(new TestCaseResult(testCase.constructor.name, testResults));
+
+    };
+    printTests(testCaseResults);
+}
+
+export async function runTest(testCase: TestCase, test: () => void): Promise<TestResult> {
+    let testResult: TestResult | null = null;
 
     try {
         console.debug(`running setup for: ${test.name}`);
@@ -16,23 +30,23 @@ export async function runTestCase(testCase: TestCase, test: () => void): Promise
         console.debug(`running teardown for ${test.name}`);
         testCase.teardown();
 
-        testResultList.push(new TestResult(test.name, "Success", "Test Passed"));
+        testResult = new TestResult(test.name, "Success", "Test Passed");
     } catch (failure) {
         if (failure instanceof AssertionError) {
-            testResultList.push(new TestResult(test.name, "Failure", failure.message));
+            testResult = new TestResult(test.name, "Failure", failure.message);
         } else if (failure instanceof Error) {
-            testResultList.push(new TestResult(test.name, "Error", failure.message));
+            testResult = new TestResult(test.name, "Error", failure.message);
         } else {
-            testResultList.push(new TestResult(test.name, "Error", "Test Threw: " + failure));
+            testResult = new TestResult(test.name, "Error", "Test Threw: " + failure);
         }
         console.warn(failure);
 
         console.debug(`running teardown for ${test.name}`);
         testCase.teardown();
     } finally {
-        if (testResultList.length === 0) {
-            testResultList.push(new TestResult("Test Case Empty", "Failure", "No Test Results produced for this class, either it is empty or errored in the test runner"));
+        if (testResult === null) {
+            testResult = new TestResult("Test Case Empty", "Failure", "No Test Results produced for this class, either it is empty or errored in the test runner");
         }
-        return new TestCaseResult(testCase.constructor.name, testResultList);
+        return testResult;
     }
 }
