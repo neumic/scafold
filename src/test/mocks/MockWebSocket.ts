@@ -1,10 +1,10 @@
-import { IWebSocketWrapper } from "../../ts/WebSocket/IWebSocketWrapper.js";
+import { GenericMessageEvent, IWebSocketWrapper } from "../../ts/WebSocket/IWebSocketWrapper.js";
 
 export class MockWebSocket implements IWebSocketWrapper {
-    onMessage: ((data: any) => void) | null = null;
+    onMessage: ((data: GenericMessageEvent) => void) | null = null;
     messagesSent: string[] = [];
 
-    setOnMessage(onMessage: (data: any) => void): void {
+    setOnMessage(onMessage: (data: GenericMessageEvent) => void): void {
         this.onMessage = onMessage;
     }
 

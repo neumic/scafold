@@ -2,9 +2,9 @@ import { IWebSocketServerWrapper } from "../../ts/WebSocket/IWebSocketServerWrap
 import { IWebSocketWrapper } from "../../ts/WebSocket/IWebSocketWrapper.js";
 
 export class MockWebSocketServer implements IWebSocketServerWrapper {
-    public setOnConnect(callback: (socket: IWebSocketWrapper, message: string) => void): void {
+    public setOnConnect(callback: (socket: IWebSocketWrapper) => void): void {
         this.onConnectParameter = callback;
     }
-    onConnectParameter: ((socket: IWebSocketWrapper, message: string) => void) | null = null;
+    onConnectParameter: ((socket: IWebSocketWrapper) => void) | null = null;
 
 }

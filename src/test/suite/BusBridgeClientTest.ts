@@ -1,18 +1,18 @@
 import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
 import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
-import { WebSocketBusBridgeClient } from "../../ts/Message/WebSocketBusBridgeClient.js";
+import { BusBridgeClient as BusBridgeClient } from "../../ts/Message/BusBridgeClient.js";
 import { assertEquals, assertNotNull, fail } from "../Asserts.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { TestCase } from "../TestCase.js";
 
-export class WebSocketBusBridgeClientTest extends TestCase {
+export class BusBridgeClientTest extends TestCase {
     public getTests(): (() => void)[] {
         return [
             function testConnectsToServer() {
                 const mockWebSocket = new MockWebSocket();
                 const messageBus = new UIMessageBus;
 
-                const websocketClient = new WebSocketBusBridgeClient(mockWebSocket, messageBus);
+                const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
 
                 const message1 = new TestMessage("test1");
                 const message2 = new TestMessage("test2");

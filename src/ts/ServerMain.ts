@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { WebSocketServer } from "ws";
 import { UIMessageBus } from "./Message/UIMessageBus.js";
-import { WebSocketBusBridgeServer } from "./Message/WebSocketBusBridgeServer.js";
+import { BusBridgeServer } from "./Message/BusBridgeServer.js";
 import { WebSocketServerWrapper } from "./WebSocket/WebSocketServerWrapper.js";
 
 const webSocketServer = new WebSocketServerWrapper(new WebSocketServer({ server: createServer() }));
@@ -17,4 +17,4 @@ const webSocketServer = new WebSocketServerWrapper(new WebSocketServer({ server:
 // httpServer.listen(3000);
 
 const messageBus = new UIMessageBus();
-new WebSocketBusBridgeServer(webSocketServer, messageBus);
+new BusBridgeServer(webSocketServer, messageBus);

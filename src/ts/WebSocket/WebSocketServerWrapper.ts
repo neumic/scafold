@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 import { IWebSocketServerWrapper } from "./IWebSocketServerWrapper.js";
 import { IWebSocketWrapper } from "./IWebSocketWrapper.js";
-import { WebSocketWrapper } from "./WebSocketWrapper.js";
+import { WSWebSocketWrapper } from "./WSWebSocketWrapper.js";
 
 export class WebSocketServerWrapper implements IWebSocketServerWrapper {
     webSocketServer: WebSocketServer;
@@ -10,10 +10,9 @@ export class WebSocketServerWrapper implements IWebSocketServerWrapper {
         this.webSocketServer = webSocketServer;
     }
 
-    public setOnConnect(callback: (socket: IWebSocketWrapper,
-        message: string) => void) {
+    public setOnConnect(callback: (socketWrapper: IWebSocketWrapper) => void) {
         this.webSocketServer.on("connection", (socket, request) => {
-            callback(new WebSocketWrapper(socket), "pull the string off the request");
+            callback(new WSWebSocketWrapper(socket));
         });
     }
 }

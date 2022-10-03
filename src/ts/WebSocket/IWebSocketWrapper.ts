@@ -1,4 +1,8 @@
+export type GenericMessageEvent = {
+    data: any,
+};
+
 export interface IWebSocketWrapper {
-    setOnMessage(callBack: (data: any) => void): void;
-    send(onMessage: string): void;
+    setOnMessage(callBack: (messageEvent: GenericMessageEvent) => void): void;
+    send(serializedMessage: string): void;
 }

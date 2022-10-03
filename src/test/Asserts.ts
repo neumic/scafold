@@ -22,8 +22,10 @@ export function assertNotEquals(expected: any, actual: any) {
 }
 
 export function assertWithinDelta(expected: number, actual: number | undefined, delta: number, additionalMessage = "") {
-    const message = additionalMessage + " expected: [" + actual + "] to be within [" + delta + "] of [" + expected + "]"
-    assertTrue(Math.abs(expected - assertNotNull(actual)) < delta, message);
+    const message = additionalMessage + " expected: [" + actual + "] to be within [" + delta + "] of [" + expected + "]";
+    if (assertNotNull(actual)) {
+        assertTrue(Math.abs(expected - actual) < delta, message);
+    }
 }
 
 export function assertGreaterThan(greater: any, lesser: any) {
@@ -31,15 +33,15 @@ export function assertGreaterThan(greater: any, lesser: any) {
     assertTrue(greater > lesser, message);
 }
 
-export function assertNotNull<Type>(object: Type | null | undefined): Type {
+export function assertNotNull<Type>(object: Type | null | undefined): object is Type {
     const message = "expected: [" + object + "] to not be null";
     assertTrue(object !== null && object !== undefined, message);
-    return object as Type;
+    return true;
 }
 
-export function assertThrows(exceptionType: any, methodOrLambdaWhichThrows: ()=>any): void{
+export function assertThrows(exceptionType: any, methodOrLambdaWhichThrows: () => any): void {
     try {
-       methodOrLambdaWhichThrows(); 
+        methodOrLambdaWhichThrows();
     } catch (error) {
         assertInstanceOf(exceptionType, error);
         return;
@@ -47,15 +49,15 @@ export function assertThrows(exceptionType: any, methodOrLambdaWhichThrows: ()=>
     fail("No Exception thrown in assertThrows");
 }
 
-export function assertInstanceOf(type: any, instance: any){
+export function assertInstanceOf(type: any, instance: any) {
     assertTrue(instance instanceof type, "expected: " + instance + " to be of type: " + type);
 }
 
-export async function assertAsyncThrows(methodOrLambdaWhichThrows: ()=>any): Promise<any> {
+export async function assertAsyncThrows(methodOrLambdaWhichThrows: () => any): Promise<any> {
     try {
-       await methodOrLambdaWhichThrows(); 
+        await methodOrLambdaWhichThrows();
     } catch (error) {
-        return error
+        return error;
     }
     fail("No Exception thrown in assertThrows");
 }

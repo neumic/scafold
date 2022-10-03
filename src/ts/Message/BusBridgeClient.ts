@@ -1,8 +1,7 @@
 import { IWebSocketWrapper } from "../WebSocket/IWebSocketWrapper.js";
-import { AbstractUIMessage } from "./AbstractUIMessage.js";
 import { UIMessageBus } from "./UIMessageBus.js";
 
-export class WebSocketBusBridgeClient {
+export class BusBridgeClient {
     private webSocket: IWebSocketWrapper;
     private messageBus: UIMessageBus;
 
@@ -14,8 +13,8 @@ export class WebSocketBusBridgeClient {
             this.webSocket.send(JSON.stringify(message));
         });
 
-        this.webSocket.setOnMessage((data) => {
-            messageBus.send(data.data as AbstractUIMessage);
+        this.webSocket.setOnMessage((messageEvent) => {
+            messageBus.send(JSON.parse(messageEvent.data)); //Why does this work? any -> AbstractUIMessage
         });
     }
 }
