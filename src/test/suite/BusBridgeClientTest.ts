@@ -4,6 +4,7 @@ import { BusBridgeClient as BusBridgeClient } from "../../ts/Message/BusBridgeCl
 import { assertEquals, assertNotNull, fail } from "../Asserts.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { TestCase } from "../TestCase.js";
+import { IBusEndpoint } from "../../ts/Message/IBusEndpoint.js";
 
 export class BusBridgeClientTest extends TestCase {
     public getTests(): (() => void)[] {
@@ -13,11 +14,12 @@ export class BusBridgeClientTest extends TestCase {
                 const messageBus = new UIMessageBus;
 
                 const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
+                const messageSender = new TestMessageSender;
 
-                const message1 = new TestMessage("test1");
-                const message2 = new TestMessage("test2");
+                const message1 = new TestMessage("test1", messageSender);
+                const message2 = new TestMessage("test2", messageSender);
                 const messageRecievedOnBus: AbstractUIMessage[] = [];
-                messageBus.register((message) => {
+                messageBus.registerMethod((message) => {
                     messageRecievedOnBus.push(message);
                 });
 
@@ -26,13 +28,15 @@ export class BusBridgeClientTest extends TestCase {
                 assertEquals(1, mockWebSocket.messagesSent.length);
                 assertEquals(JSON.stringify(message1), mockWebSocket.messagesSent[0]);
 
-                const messageEvent = new MessageEvent<AbstractUIMessage>("type", { data: message2 });
+                const messageEvent = new MessageEvent<string>("type", { data: JSON.stringify(message2) });
                 assertNotNull(mockWebSocket.onMessage);
                 if (mockWebSocket.onMessage != null) {
                     mockWebSocket.onMessage(messageEvent);
                 }
                 assertEquals(2, messageRecievedOnBus.length);
-                assertEquals(message2, messageRecievedOnBus[1]);
+                console.log(messageRecievedOnBus[1] as AbstractUIMessage);
+
+                assertEquals(message2.messageName, messageRecievedOnBus[1].messageName);
             },
 
             function testReceivingNonUIMessages() {
@@ -43,4 +47,10 @@ export class BusBridgeClientTest extends TestCase {
 }
 
 class TestMessage extends AbstractUIMessage {
+}
+
+class TestMessageSender implements IBusEndpoint {
+    getBusId(): number {
+        return 0;
+    }
 }

@@ -6,6 +6,7 @@ import { assertEquals, assertNotNull } from "../Asserts.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { MockWebSocketServer } from "../mocks/MockWebSocketServer.js";
 import { TestCase } from "../TestCase.js";
+import { MockMessageSender } from "../mocks/MockMessageSender.js";
 
 export class BusBridgeServerTest extends TestCase {
     public getTests(): (() => void)[] {
@@ -17,10 +18,11 @@ export class BusBridgeServerTest extends TestCase {
                 const thirdConnection = new MockWebSocket();
                 const messageBus = new UIMessageBus;
 
-                const message1 = new TestMessage("test1");
-                const message2 = new TestMessage("test2");
+                const message1 = new TestMessage("test1", new MockMessageSender);
+                const message2 = new TestMessage("test2", new MockMessageSender);
+
                 const messageRecievedOnBus: AbstractUIMessage[] = [];
-                messageBus.register((message) => {
+                messageBus.registerMethod((message) => {
                     messageRecievedOnBus.push(message);
                 });
 
@@ -46,6 +48,7 @@ export class BusBridgeServerTest extends TestCase {
                 if (assertNotNull(firstConnection.onMessage)) {
                     firstConnection.onMessage(messageEvent);
                 }
+
                 assertEquals(2, messageRecievedOnBus.length);
                 assertEquals(message2, messageRecievedOnBus[1]);
 
@@ -54,9 +57,6 @@ export class BusBridgeServerTest extends TestCase {
                 assertEquals(JSON.stringify(message2), secondConnection.messagesSent[1]);
                 assertEquals(2, thirdConnection.messagesSent.length);
                 assertEquals(JSON.stringify(message2), thirdConnection.messagesSent[1]);
-            },
-
-            function sendsMessagesFromBus() {
             }
         ];
     }

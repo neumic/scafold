@@ -1,7 +1,8 @@
 import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
 import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
-import { assertEquals } from "../Asserts.js";
+import { assertEquals, fail } from "../Asserts.js";
+import { MockMessageSender } from "../mocks/MockMessageSender.js";
 import { TestCase } from "../TestCase.js";
 
 export class UIMessageBusTest extends TestCase {
@@ -13,15 +14,15 @@ export class UIMessageBusTest extends TestCase {
 
                 const messageBus = new UIMessageBus();
 
-                messageBus.register((message) => {
+                messageBus.registerMethod((message) => {
                     messagesSent1.push(message);
                 });
-                messageBus.register((message) => {
+                messageBus.registerMethod((message) => {
                     messagesSent2.push(message);
                 });
 
-                const message1 = new MockMessage("");
-                const message2 = new ErrorMessage(new Error);
+                const message1 = new MockMessage("", new MockMessageSender);
+                const message2 = new ErrorMessage(new Error, new MockMessageSender);
                 messageBus.send(message1);
                 messageBus.send(message2);
 
@@ -32,6 +33,10 @@ export class UIMessageBusTest extends TestCase {
                 assertEquals(2, messagesSent2.length);
                 assertEquals(message1, messagesSent1[0]);
                 assertEquals(message2, messagesSent1[1]);
+            },
+
+            function testRegisterReceivers() {
+                fail();
             }
         ];
     }

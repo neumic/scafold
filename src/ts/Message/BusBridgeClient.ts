@@ -9,7 +9,7 @@ export class BusBridgeClient {
         this.webSocket = webSocket;
         this.messageBus = messageBus;
 
-        messageBus.register((message) => {
+        messageBus.registerMethod((message) => {
             this.webSocket.send(JSON.stringify(message));
         });
 
