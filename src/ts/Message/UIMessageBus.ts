@@ -14,7 +14,7 @@ export class UIMessageBus {
     }
 
     send(message: AbstractUIMessage): void {
-        console.debug("Message Sent: ", message.messageName);
+        console.debug("Message Sent: ", message);
         this.registeredMethods.forEach(method => method(message));
         this.receivers.forEach((receiver) => {
             if (receiver.getBusId() !== message.getSenderId()) {

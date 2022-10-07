@@ -15,6 +15,7 @@ server_test: ts
 
 clean:
 	rm -r dist/*
+	rm -r build/*
 
 deploy: clean bundle static_copy
 	#scp dist/* <your-url-here>:/var/www/html/

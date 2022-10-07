@@ -4,17 +4,10 @@ import { UIMessageBus } from "./Message/UIMessageBus.js";
 import { BusBridgeServer } from "./Message/BusBridgeServer.js";
 import { WebSocketServerWrapper } from "./WebSocket/WebSocketServerWrapper.js";
 
-const webSocketServer = new WebSocketServerWrapper(new WebSocketServer({ server: createServer() }));
+const httpServer = createServer();
+const webSocketServer = new WebSocketServerWrapper(new WebSocketServer({ server: httpServer }));
 
-// webSocketServer.on('connection', (webSocket) => {
-//     webSocket.send("HEY BUDDY!");
-//     webSocket.on("message", (data) => {
-//         console.log(data);
-//         webSocket.send(data + " WAHT?");
-//     });
-// });
-
-// httpServer.listen(3000);
+httpServer.listen(3000);
 
 const messageBus = new UIMessageBus();
 new BusBridgeServer(webSocketServer, messageBus);
