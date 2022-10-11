@@ -1,9 +1,8 @@
 import { AbstractUIMessage } from "./AbstractUIMessage.js";
-import { IBusEndpoint } from "./IBusEndpoint.js";
 
 export class BoxUncheckedMessage extends AbstractUIMessage {
-    constructor(sender: IBusEndpoint) {
-        super("BoxUncheckedMessage", sender);
+    constructor() {
+        super("BoxUncheckedMessage");
     }
 
     public static recognize(message: AbstractUIMessage): message is BoxUncheckedMessage {

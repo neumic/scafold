@@ -10,7 +10,7 @@ static_copy:
 ts:
 	tsc
 
-server_test: ts
+server_test:
 	node build/test/ServerTestMain.js
 
 clean:

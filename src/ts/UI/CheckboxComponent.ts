@@ -20,7 +20,8 @@ export class CheckboxComponent extends AbstractViewComponent implements IMessage
         this.element = document.createElement("input");
         this.element.type = "checkbox";
         this.element.onclick = () => messageBus.send(
-            this.element.checked ? new BoxCheckedMessage(this) : new BoxUncheckedMessage(this)
+            this.element.checked ? new BoxCheckedMessage() : new BoxUncheckedMessage(),
+            this
         );
     }
 

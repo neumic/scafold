@@ -21,10 +21,10 @@ export class UIMessageBusTest extends TestCase {
                     messagesSent2.push(message);
                 });
 
-                const message1 = new MockMessage("", new MockMessageSender);
-                const message2 = new ErrorMessage(new Error, new MockMessageSender);
-                messageBus.send(message1);
-                messageBus.send(message2);
+                const message1 = new MockMessage("");
+                const message2 = new ErrorMessage(new Error);
+                messageBus.send(message1, new MockMessageSender);
+                messageBus.send(message2, new MockMessageSender);
 
                 assertEquals(2, messagesSent1.length);
                 assertEquals(message1, messagesSent1[0]);

@@ -1,4 +1,5 @@
 import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { IBusEndpoint } from "./IBusEndpoint.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
 
 export class UIMessageBus {
@@ -13,11 +14,11 @@ export class UIMessageBus {
         this.receivers.push(receiver);
     }
 
-    send(message: AbstractUIMessage): void {
+    send(message: AbstractUIMessage, sender: IBusEndpoint): void {
         console.debug("Message Sent: ", message);
         this.registeredMethods.forEach(method => method(message));
         this.receivers.forEach((receiver) => {
-            if (receiver.getBusId() !== message.getSenderId()) {
+            if (receiver.getBusId() !== sender.getBusId()) {
                 receiver.receive(message);
             }
         });

@@ -18,8 +18,8 @@ export class BusBridgeServerTest extends TestCase {
                 const thirdConnection = new MockWebSocket();
                 const messageBus = new UIMessageBus;
 
-                const message1 = new TestMessage("test1", new MockMessageSender);
-                const message2 = new TestMessage("test2", new MockMessageSender);
+                const message1 = new TestMessage("test1");
+                const message2 = new TestMessage("test2");
 
                 const messageRecievedOnBus: AbstractUIMessage[] = [];
                 messageBus.registerMethod((message) => {
@@ -34,7 +34,7 @@ export class BusBridgeServerTest extends TestCase {
                     mockWebSocketServer.onConnectParameter(thirdConnection);
                 }
 
-                messageBus.send(message1);
+                messageBus.send(message1, new MockMessageSender);
 
                 assertEquals(1, firstConnection.messagesSent.length);
                 assertEquals(JSON.stringify(message1), firstConnection.messagesSent[0]);

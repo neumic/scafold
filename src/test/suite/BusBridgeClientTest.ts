@@ -16,14 +16,14 @@ export class BusBridgeClientTest extends TestCase {
                 const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
                 const messageSender = new TestMessageSender;
 
-                const message1 = new TestMessage("test1", messageSender);
-                const message2 = new TestMessage("test2", messageSender);
+                const message1 = new TestMessage("test1");
+                const message2 = new TestMessage("test2");
                 const messageRecievedOnBus: AbstractUIMessage[] = [];
                 messageBus.registerMethod((message) => {
                     messageRecievedOnBus.push(message);
                 });
 
-                messageBus.send(message1);
+                messageBus.send(message1, messageSender);
 
                 assertEquals(1, mockWebSocket.messagesSent.length);
                 assertEquals(JSON.stringify(message1), mockWebSocket.messagesSent[0]);

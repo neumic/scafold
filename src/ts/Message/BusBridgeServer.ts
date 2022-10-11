@@ -12,7 +12,7 @@ export class BusBridgeServer {
             messageBus.registerReceiver(socketConnection);
 
             socket.setOnMessage((message) => {
-                messageBus.send(new SocketMessage(message.data, socketConnection));
+                messageBus.send(new SocketMessage(message.data), socketConnection);
             });
         });
     }

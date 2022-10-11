@@ -2,7 +2,6 @@ import { IWebSocketWrapper } from "../WebSocket/IWebSocketWrapper.js";
 import { AbstractUIMessage } from "./AbstractUIMessage.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
 import { MessageFactory } from "./MessageFactory.js";
-import { SocketMessage } from "./SocketMessage.js";
 import { UIMessageBus } from "./UIMessageBus.js";
 
 export class BusBridgeClient implements IMessageReceiver {
@@ -19,7 +18,7 @@ export class BusBridgeClient implements IMessageReceiver {
         this.messageBus.registerReceiver(this);
 
         this.webSocket.setOnMessage((messageEvent) => {
-            messageBus.send(new MessageFactory().makeMessage(messageEvent.data, this));
+            messageBus.send(new MessageFactory().makeMessage(messageEvent.data), this);
         });
     }
     receive(message: AbstractUIMessage): void {

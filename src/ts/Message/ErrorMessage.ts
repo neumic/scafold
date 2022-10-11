@@ -1,11 +1,10 @@
 import { AbstractUIMessage } from "./AbstractUIMessage.js";
-import { IBusEndpoint } from "./IBusEndpoint.js";
 
 export class ErrorMessage extends AbstractUIMessage {
     public error: Error;
 
-    constructor(error: Error, messageSender: IBusEndpoint) {
-        super("ErrorMessage", messageSender);
+    constructor(error: Error) {
+        super("ErrorMessage");
         this.error = error;
     }
 
