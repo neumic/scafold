@@ -1,5 +1,4 @@
 import { AbstractUIMessage } from "./AbstractUIMessage.js";
-import { IBusEndpoint } from "./IBusEndpoint.js";
 
 export class BoxCheckedMessage extends AbstractUIMessage {
     constructor() {

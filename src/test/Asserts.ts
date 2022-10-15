@@ -33,6 +33,10 @@ export function assertGreaterThan(greater: any, lesser: any) {
     assertTrue(greater > lesser, message);
 }
 
+export function assertNull(object: any) {
+    assertEquals(null, object);
+}
+
 export function assertNotNull<Type>(object: Type | null | undefined): object is Type {
     const message = "expected: [" + object + "] to not be null";
     assertTrue(object !== null && object !== undefined, message);

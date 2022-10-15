@@ -4,6 +4,7 @@ import { UIMessageBusTest } from "./UIMessageBusTest.js";
 import { RootViewComponentTest } from "./RootViewComponentTest.js";
 import { UIMessageTest } from "./UIMessageTest.js";
 import { BusBridgeClientTest } from "./BusBridgeClientTest.js";
+import { MessageConverterTest } from "./MessageConverterTest.js";
 
 export const testSuite: TestCase[] = [
     new UIBuilderTest(),
@@ -11,4 +12,5 @@ export const testSuite: TestCase[] = [
     new RootViewComponentTest(),
     new UIMessageTest(),
     new BusBridgeClientTest(),
+    new MessageConverterTest(),
 ];
