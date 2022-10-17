@@ -1,12 +1,12 @@
 import { IDocumentWrapper } from "../UI/IDocumentWrapper.js";
-import { UIMessageBus } from "../Message/UIMessageBus.js";
+import { IMessageBus } from "../Message/IMessageBus.js";
 
 export abstract class AbstractViewComponent {
     children: AbstractViewComponent[];
-    messageBus: UIMessageBus;
+    messageBus: IMessageBus;
     document: IDocumentWrapper;
 
-    constructor(document: IDocumentWrapper, messageBus: UIMessageBus, ...children: AbstractViewComponent[]) {
+    constructor(document: IDocumentWrapper, messageBus: IMessageBus, ...children: AbstractViewComponent[]) {
         this.document = document;
         this.messageBus = messageBus;
         this.children = children;

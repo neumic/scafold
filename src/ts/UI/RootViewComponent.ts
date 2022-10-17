@@ -1,11 +1,11 @@
-import { UIMessageBus } from "../Message/UIMessageBus.js";
+import { IMessageBus } from "../Message/IMessageBus.js";
 import { AbstractViewComponent } from "./AbstractViewComponent.js";
 import { IDocumentWrapper } from "./IDocumentWrapper.js";
 
 export class RootViewComponent extends AbstractViewComponent {
     private section: HTMLElement;
 
-    constructor(document: IDocumentWrapper, messageBus: UIMessageBus, ...children: AbstractViewComponent[]) {
+    constructor(document: IDocumentWrapper, messageBus: IMessageBus, ...children: AbstractViewComponent[]) {
         super(document, messageBus, ...children);
         this.section = this.document.createElement("section");
         this.section.id = "root";

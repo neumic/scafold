@@ -1,10 +1,13 @@
 import { IWebSocketWrapper } from "./IWebSocketWrapper.js";
 
 export class BrowserWebSocketWrapper implements IWebSocketWrapper {
-    private webSocket: WebSocket;
+    private _webSocket: WebSocket;
+    public get webSocket(): WebSocket {
+        return this._webSocket;
+    }
 
     constructor(webSocket: WebSocket) {
-        this.webSocket = webSocket;
+        this._webSocket = webSocket;
     }
 
     setOnMessage(callBack: (messageEvent: MessageEvent) => void) {

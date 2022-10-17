@@ -1,16 +1,20 @@
 import { IWebSocketWrapper } from "../WebSocket/IWebSocketWrapper.js";
 import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { IMessageBus } from "./IMessageBus.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
-import { MessageFactory } from "./MessageFactory.js";
-import { UIMessageBus } from "./UIMessageBus.js";
+import { MessageConverter } from "./MessageConverter.js";
 
 export class BusBridgeClient implements IMessageReceiver {
-    private webSocket: IWebSocketWrapper;
-    private messageBus: UIMessageBus;
-    private _busId: number;
+    public get webSocket(): IWebSocketWrapper {
+        return this._webSocket;
+    }
 
-    constructor(webSocket: IWebSocketWrapper, messageBus: UIMessageBus) {
-        this.webSocket = webSocket;
+    private messageBus: IMessageBus;
+    private _busId: number;
+    private _webSocket: IWebSocketWrapper;
+
+    constructor(webSocket: IWebSocketWrapper, messageBus: IMessageBus) {
+        this._webSocket = webSocket;
         this.messageBus = messageBus;
 
         this._busId = Math.random();
@@ -18,7 +22,10 @@ export class BusBridgeClient implements IMessageReceiver {
         this.messageBus.registerReceiver(this);
 
         this.webSocket.setOnMessage((messageEvent) => {
-            messageBus.send(new MessageFactory().makeMessage(messageEvent.data), this);
+            const concreteMessage = new MessageConverter().convert(messageEvent.data);
+            if (concreteMessage !== null) {
+                messageBus.send(concreteMessage, this);
+            }
         });
     }
     receive(message: AbstractUIMessage): void {

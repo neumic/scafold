@@ -7,6 +7,8 @@ import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { MockWebSocketServer } from "../mocks/MockWebSocketServer.js";
 import { TestCase } from "../TestCase.js";
 import { MockMessageSender } from "../mocks/MockMessageSender.js";
+import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
+import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
 
 export class BusBridgeServerTest extends TestCase {
     public getTests(): (() => void)[] {
@@ -19,12 +21,10 @@ export class BusBridgeServerTest extends TestCase {
                 const messageBus = new UIMessageBus;
 
                 const message1 = new TestMessage("test1");
-                const message2 = new TestMessage("test2");
+                const message2 = new BoxCheckedMessage();
 
-                const messageRecievedOnBus: AbstractUIMessage[] = [];
-                messageBus.registerMethod((message) => {
-                    messageRecievedOnBus.push(message);
-                });
+                const messageReceiver = new MockMessageReceiver(1);
+                messageBus.registerReceiver(messageReceiver);
 
                 const busBridgeServer = new BusBridgeServer(mockWebSocketServer, messageBus);
 
@@ -49,8 +49,7 @@ export class BusBridgeServerTest extends TestCase {
                     firstConnection.onMessage(messageEvent);
                 }
 
-                assertEquals(2, messageRecievedOnBus.length);
-                assertEquals(message2, messageRecievedOnBus[1]);
+                assertEquals(2, messageReceiver.messagesReceived.length);
 
                 assertEquals(1, firstConnection.messagesSent.length);
                 assertEquals(2, secondConnection.messagesSent.length);

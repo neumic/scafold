@@ -12,12 +12,12 @@ export function assertFalse(statement: any) {
     assertTrue(!statement, message);
 }
 export function assertEquals(expected: any, actual: any) {
-    const message = "expected: [" + actual + "] to equal [" + expected + "]";
+    const message = "actual: [" + actual + "] expected to equal: [" + expected + "]";
     assertTrue(expected === actual, message);
 }
 
 export function assertNotEquals(expected: any, actual: any) {
-    const message = "expected: [" + actual + "] to NOT equal [" + expected + "]";
+    const message = "actual: [" + actual + "] expected to NOT equal [" + expected + "]";
     assertTrue(expected !== actual, message);
 }
 

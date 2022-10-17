@@ -1,6 +1,6 @@
 import { IWebSocketServerWrapper } from "../WebSocket/IWebSocketServerWrapper.js";
 import { WebSocketConnection } from "../WebSocket/WebSocketConnection.js";
-import { SocketMessage } from "./SocketMessage.js";
+import { MessageConverter } from "./MessageConverter.js";
 import { UIMessageBus } from "./UIMessageBus.js";
 
 export class BusBridgeServer {
@@ -11,8 +11,11 @@ export class BusBridgeServer {
 
             messageBus.registerReceiver(socketConnection);
 
-            socket.setOnMessage((message) => {
-                messageBus.send(new SocketMessage(message.data), socketConnection);
+            socket.setOnMessage((socketMessage) => {
+                const message = new MessageConverter().convert(socketMessage.data);
+                if (message !== null) {
+                    messageBus.send(message, socketConnection);
+                }
             });
         });
     }

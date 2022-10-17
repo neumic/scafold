@@ -13,6 +13,9 @@ ts:
 server_test:
 	node build/test/ServerTestMain.js
 
+serve:
+	node build/ts/ServerMain.js
+
 clean:
 	rm -r dist/*
 	rm -r build/*

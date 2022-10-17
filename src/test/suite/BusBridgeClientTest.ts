@@ -5,6 +5,8 @@ import { assertEquals, assertNotNull, fail } from "../Asserts.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { TestCase } from "../TestCase.js";
 import { IBusEndpoint } from "../../ts/Message/IBusEndpoint.js";
+import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
+import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
 
 export class BusBridgeClientTest extends TestCase {
     public getTests(): (() => void)[] {
@@ -17,11 +19,10 @@ export class BusBridgeClientTest extends TestCase {
                 const messageSender = new TestMessageSender;
 
                 const message1 = new TestMessage("test1");
-                const message2 = new TestMessage("test2");
-                const messageRecievedOnBus: AbstractUIMessage[] = [];
-                messageBus.registerMethod((message) => {
-                    messageRecievedOnBus.push(message);
-                });
+                const message2 = new BoxCheckedMessage();
+
+                const messageReceiver = new MockMessageReceiver(1);
+                messageBus.registerReceiver(messageReceiver);
 
                 messageBus.send(message1, messageSender);
 
@@ -29,18 +30,31 @@ export class BusBridgeClientTest extends TestCase {
                 assertEquals(JSON.stringify(message1), mockWebSocket.messagesSent[0]);
 
                 const messageEvent = new MessageEvent<string>("type", { data: JSON.stringify(message2) });
-                assertNotNull(mockWebSocket.onMessage);
-                if (mockWebSocket.onMessage != null) {
+
+                if (assertNotNull(mockWebSocket.onMessage)) {
                     mockWebSocket.onMessage(messageEvent);
                 }
-                assertEquals(2, messageRecievedOnBus.length);
-                console.log(messageRecievedOnBus[1] as AbstractUIMessage);
 
-                assertEquals(message2.messageName, messageRecievedOnBus[1].messageName);
+                assertEquals(2, messageReceiver.messagesReceived.length);
+                assertEquals(message2.messageName, messageReceiver.messagesReceived[1].messageName);
             },
 
             function testReceivingNonUIMessages() {
-                fail();
+                const mockWebSocket = new MockWebSocket();
+                const messageBus = new UIMessageBus;
+
+                const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
+                const messageSender = new TestMessageSender;
+
+                const messageReceiver = new MockMessageReceiver(1);
+                messageBus.registerReceiver(messageReceiver);
+
+                const messageEvent = new MessageEvent<string>("type", { data: "Def not a message, tho" });
+
+                if (assertNotNull(mockWebSocket.onMessage)) {
+                    mockWebSocket.onMessage(messageEvent);
+                }
+                assertEquals(0, messageReceiver.messagesReceived.length);
             }
         ];
     }
