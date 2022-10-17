@@ -1,5 +1,5 @@
-import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
-import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
+import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
+import { MessageBus } from "../../ts/Message/MessageBus.js";
 import { BusBridgeClient as BusBridgeClient } from "../../ts/Message/BusBridgeClient.js";
 import { assertEquals, assertNotNull, fail } from "../Asserts.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
@@ -13,7 +13,7 @@ export class BusBridgeClientTest extends TestCase {
         return [
             function testConnectsToServer() {
                 const mockWebSocket = new MockWebSocket();
-                const messageBus = new UIMessageBus;
+                const messageBus = new MessageBus;
 
                 const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
                 const messageSender = new TestMessageSender;
@@ -41,7 +41,7 @@ export class BusBridgeClientTest extends TestCase {
 
             function testReceivingNonUIMessages() {
                 const mockWebSocket = new MockWebSocket();
-                const messageBus = new UIMessageBus;
+                const messageBus = new MessageBus;
 
                 const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
                 const messageSender = new TestMessageSender;
@@ -60,7 +60,7 @@ export class BusBridgeClientTest extends TestCase {
     }
 }
 
-class TestMessage extends AbstractUIMessage {
+class TestMessage extends AbstractMessage {
 }
 
 class TestMessageSender implements IBusEndpoint {

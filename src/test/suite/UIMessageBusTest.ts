@@ -1,6 +1,6 @@
-import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
+import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
-import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
+import { MessageBus } from "../../ts/Message/MessageBus.js";
 import { assertEquals } from "../Asserts.js";
 import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
 import { TestCase } from "../TestCase.js";
@@ -12,7 +12,7 @@ export class UIMessageBusTest extends TestCase {
                 const receiver1 = new MockMessageReceiver(1);
                 const receiver2 = new MockMessageReceiver(2);
                 const receiver3 = new MockMessageReceiver(3);
-                const messageBus = new UIMessageBus();
+                const messageBus = new MessageBus();
 
                 messageBus.registerReceiver(receiver1);
                 messageBus.registerReceiver(receiver2);
@@ -38,5 +38,5 @@ export class UIMessageBusTest extends TestCase {
     }
 }
 
-class MockMessage extends AbstractUIMessage {
+class MockMessage extends AbstractMessage {
 }

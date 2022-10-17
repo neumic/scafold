@@ -1,4 +1,4 @@
-import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
+import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
 import { BoxUncheckedMessage } from "../../ts/Message/BoxUncheckedMessage.js";
 import { MessageConverter } from "../../ts/Message/MessageConverter.js";

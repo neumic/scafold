@@ -1,9 +1,9 @@
-import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
+import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { IBusEndpoint } from "../../ts/Message/IBusEndpoint.js";
 import { IMessageBus } from "../../ts/Message/IMessageBus.js";
 import { IMessageReceiver } from "../../ts/Message/IMessageReceiver.js";
 
-type SendParameters = { message: AbstractUIMessage, sender: IBusEndpoint; };
+type SendParameters = { message: AbstractMessage, sender: IBusEndpoint; };
 
 export class MockMessageBus implements IMessageBus {
     receivers: IMessageReceiver[] = [];
@@ -12,7 +12,7 @@ export class MockMessageBus implements IMessageBus {
     registerReceiver(receiver: IMessageReceiver): void {
         this.receivers.push(receiver);
     }
-    send(message: AbstractUIMessage, sender: IBusEndpoint): void {
+    send(message: AbstractMessage, sender: IBusEndpoint): void {
         this.messageSent.push({ message, sender });
     }
 }

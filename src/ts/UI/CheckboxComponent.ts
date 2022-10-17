@@ -1,4 +1,4 @@
-import { AbstractUIMessage } from "../Message/AbstractUIMessage.js";
+import { AbstractMessage } from "../Message/AbstractMessage.js";
 import { BoxCheckedMessage } from "../Message/BoxCheckedMessage.js";
 import { BoxUncheckedMessage } from "../Message/BoxUncheckedMessage.js";
 import { IMessageBus } from "../Message/IMessageBus.js";
@@ -25,7 +25,7 @@ export class CheckboxComponent extends AbstractViewComponent implements IMessage
         );
     }
 
-    receive(message: AbstractUIMessage): void {
+    receive(message: AbstractMessage): void {
         if (BoxCheckedMessage.recognize(message)) {
             this.element.checked = true;
         } else if (BoxUncheckedMessage.recognize(message)) {

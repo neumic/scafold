@@ -1,11 +1,11 @@
 import { IWebSocketServerWrapper } from "../WebSocket/IWebSocketServerWrapper.js";
 import { WebSocketConnection } from "../WebSocket/WebSocketConnection.js";
 import { MessageConverter } from "./MessageConverter.js";
-import { UIMessageBus } from "./UIMessageBus.js";
+import { MessageBus } from "./MessageBus.js";
 
 export class BusBridgeServer {
 
-    constructor(webSocketServer: IWebSocketServerWrapper, messageBus: UIMessageBus) {
+    constructor(webSocketServer: IWebSocketServerWrapper, messageBus: MessageBus) {
         webSocketServer.setOnConnect((socket) => {
             const socketConnection = new WebSocketConnection(socket);
 

@@ -1,4 +1,4 @@
-import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
+import { MessageBus } from "../../ts/Message/MessageBus.js";
 import { AbstractViewComponent } from "../../ts/UI/AbstractViewComponent.js";
 import { DocumentWrapper } from "../../ts/UI/DocumentWrapper.js";
 import { RootViewComponent } from "../../ts/UI/RootViewComponent.js";
@@ -10,7 +10,7 @@ export class RootViewComponentTest extends TestCase {
         return [
             function constructsWithChildren() {
                 const document = new DocumentWrapper();
-                const messageBus = new UIMessageBus();
+                const messageBus = new MessageBus();
                 const testComponent1 = new TestViewComponent(document, messageBus);
                 const testComponent2 = new TestViewComponent(document, messageBus);
                 let root = new RootViewComponent(document, messageBus, testComponent1, testComponent2);

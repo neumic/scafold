@@ -1,6 +1,6 @@
-import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { AbstractMessage } from "./AbstractMessage.js";
 import { IBusEndpoint } from "./IBusEndpoint.js";
 
 export interface IMessageReceiver extends IBusEndpoint {
-    receive(message: AbstractUIMessage): void;
+    receive(message: AbstractMessage): void;
 }

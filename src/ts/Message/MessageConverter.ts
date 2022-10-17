@@ -1,9 +1,9 @@
-import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { AbstractMessage } from "./AbstractMessage.js";
 import { BoxCheckedMessage } from "./BoxCheckedMessage.js";
 import { BoxUncheckedMessage } from "./BoxUncheckedMessage.js";
 
 export class MessageConverter {
-    convert(jsonString: string): AbstractUIMessage | null {
+    convert(jsonString: string): AbstractMessage | null {
         try {
             const jsonObject = JSON.parse(jsonString);
 

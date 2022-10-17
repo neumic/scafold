@@ -1,5 +1,5 @@
-import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
-import { UIMessageBus } from "../../ts/Message/UIMessageBus.js";
+import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
+import { MessageBus } from "../../ts/Message/MessageBus.js";
 import { BusBridgeServer } from "../../ts/Message/BusBridgeServer.js";
 import { GenericMessageEvent } from "../../ts/WebSocket/IWebSocketWrapper.js";
 import { assertEquals, assertNotNull } from "../Asserts.js";
@@ -18,7 +18,7 @@ export class BusBridgeServerTest extends TestCase {
                 const firstConnection = new MockWebSocket();
                 const secondConnection = new MockWebSocket();
                 const thirdConnection = new MockWebSocket();
-                const messageBus = new UIMessageBus;
+                const messageBus = new MessageBus;
 
                 const message1 = new TestMessage("test1");
                 const message2 = new BoxCheckedMessage();
@@ -61,5 +61,5 @@ export class BusBridgeServerTest extends TestCase {
     }
 }
 
-class TestMessage extends AbstractUIMessage {
+class TestMessage extends AbstractMessage {
 }

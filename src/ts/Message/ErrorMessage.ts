@@ -1,6 +1,6 @@
-import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { AbstractMessage } from "./AbstractMessage.js";
 
-export class ErrorMessage extends AbstractUIMessage {
+export class ErrorMessage extends AbstractMessage {
     public error: Error;
 
     constructor(error: Error) {
@@ -8,7 +8,7 @@ export class ErrorMessage extends AbstractUIMessage {
         this.error = error;
     }
 
-    public static recognize(message: AbstractUIMessage): message is ErrorMessage {
+    public static recognize(message: AbstractMessage): message is ErrorMessage {
         return message.messageName() === "ErrorMessage";
     }
 }

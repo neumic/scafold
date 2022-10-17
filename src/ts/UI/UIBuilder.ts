@@ -1,6 +1,6 @@
 import { IDocumentWrapper } from "./IDocumentWrapper.js";
 import { RootViewComponent } from "./RootViewComponent.js";
-import { UIMessageBus } from "../Message/UIMessageBus.js";
+import { MessageBus } from "../Message/MessageBus.js";
 import { AbstractViewComponent } from "./AbstractViewComponent.js";
 import { CheckboxComponent } from "./CheckboxComponent.js";
 import { BusBridgeClient } from "../Message/BusBridgeClient.js";

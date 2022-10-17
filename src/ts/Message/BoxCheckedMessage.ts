@@ -1,11 +1,11 @@
-import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { AbstractMessage } from "./AbstractMessage.js";
 
-export class BoxCheckedMessage extends AbstractUIMessage {
+export class BoxCheckedMessage extends AbstractMessage {
     constructor() {
         super("BoxCheckedMessage");
     }
 
-    public static recognize(message: AbstractUIMessage): message is BoxCheckedMessage {
+    public static recognize(message: AbstractMessage): message is BoxCheckedMessage {
         return message.messageName() === "BoxCheckedMessage";
     }
 }

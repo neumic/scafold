@@ -1,4 +1,4 @@
-import { AbstractUIMessage } from "../Message/AbstractUIMessage.js";
+import { AbstractMessage } from "../Message/AbstractMessage.js";
 import { BusId } from "../Message/IBusEndpoint.js";
 import { IMessageReceiver } from "../Message/IMessageReceiver.js";
 import { IWebSocketWrapper } from "./IWebSocketWrapper.js";
@@ -12,7 +12,7 @@ export class WebSocketConnection implements IMessageReceiver {
         this.messageSenderId = Math.random();
     }
 
-    receive(message: AbstractUIMessage): void {
+    receive(message: AbstractMessage): void {
         this.websocket.send(JSON.stringify(message));
     }
 

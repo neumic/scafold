@@ -1,5 +1,5 @@
 import { IWebSocketWrapper } from "../WebSocket/IWebSocketWrapper.js";
-import { AbstractUIMessage } from "./AbstractUIMessage.js";
+import { AbstractMessage } from "./AbstractMessage.js";
 import { IMessageBus } from "./IMessageBus.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
 import { MessageConverter } from "./MessageConverter.js";
@@ -28,7 +28,7 @@ export class BusBridgeClient implements IMessageReceiver {
             }
         });
     }
-    receive(message: AbstractUIMessage): void {
+    receive(message: AbstractMessage): void {
         this.webSocket.send(JSON.stringify(message));
     }
     getBusId(): number {

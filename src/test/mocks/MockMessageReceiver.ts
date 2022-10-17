@@ -1,15 +1,15 @@
-import { AbstractUIMessage } from "../../ts/Message/AbstractUIMessage.js";
+import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { IMessageReceiver } from "../../ts/Message/IMessageReceiver.js";
 
 export class MockMessageReceiver implements IMessageReceiver {
-    messagesReceived: AbstractUIMessage[] = [];
+    messagesReceived: AbstractMessage[] = [];
     id: number;
 
     constructor(id: number) {
         this.id = id;
     }
 
-    receive(message: AbstractUIMessage): void {
+    receive(message: AbstractMessage): void {
         this.messagesReceived.push(message);
     }
     getBusId(): number {
