@@ -4,8 +4,8 @@ import { IMessageReceiver } from "../Message/Bus/IMessageReceiver.js";
 import { IWebSocketWrapper } from "./IWebSocketWrapper.js";
 
 export class WebSocketConnection implements IMessageReceiver {
-    websocket: IWebSocketWrapper;
-    messageSenderId: BusId;
+    private websocket: IWebSocketWrapper;
+    private messageSenderId: BusId;
 
     constructor(websocket: IWebSocketWrapper) {
         this.websocket = websocket;

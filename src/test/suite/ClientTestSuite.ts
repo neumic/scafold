@@ -6,6 +6,7 @@ import { MessageTest } from "./MessageTest.js";
 import { BusBridgeClientTest } from "./BusBridgeClientTest.js";
 import { MessageConverterTest } from "./MessageConverterTest.js";
 import { CheckboxComponentTest } from "./CheckboxComponentTest.js";
+import { WebSocketConnectionTest } from "./WebSocketConnectionTets.js";
 
 export const testSuite: TestCase[] = [
     new UIBuilderTest(),
@@ -15,4 +16,5 @@ export const testSuite: TestCase[] = [
     new BusBridgeClientTest(),
     new MessageConverterTest(),
     new CheckboxComponentTest(),
+    new WebSocketConnectionTest(),
 ];
