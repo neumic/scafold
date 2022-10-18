@@ -3,7 +3,6 @@ import { TestCaseResult } from './scaffold/TestResult.js';
 import { runAllTests } from './scaffold/TestRunner.js';
 
 function printTests(testCaseResults: TestCaseResult[]) {
-    console.log(testCaseResults);
     for (const testCaseResult of testCaseResults) {
         const testListElement = document.createElement('ul');
         const testCaseElement = document.createElement('details');
