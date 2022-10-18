@@ -1,11 +1,11 @@
 import { TestCase } from "../scaffold/TestCase.js";
-import { UIMessageBusTest } from "./UIMessageBusTest.js";
-import { MessageTest } from "./UIMessageTest.js";
+import { MessageBusTest } from "./MessageBusTest.js";
+import { MessageTest } from "./MessageTest.js";
 import { BusBridgeServerTest } from "./BusBridgeServerTest.js";
 import { MessageConverterTest } from "./MessageConverterTest.js";
 
 export const testSuite: TestCase[] = [
-    new UIMessageBusTest(),
+    new MessageBusTest(),
     new MessageTest(),
     new BusBridgeServerTest(),
     new MessageConverterTest(),

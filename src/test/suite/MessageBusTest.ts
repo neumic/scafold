@@ -5,7 +5,7 @@ import { assertEquals } from "../scaffold/Asserts.js";
 import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
 import { TestCase } from "../scaffold/TestCase.js";
 
-export class UIMessageBusTest extends TestCase {
+export class MessageBusTest extends TestCase {
     public getTests(): (() => void)[] {
         return [
             function registerAndSend() {
