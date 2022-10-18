@@ -1,4 +1,5 @@
 import { AssertionError } from "./AssertionError.js";
+
 export function assertTrue(statement: any, message?: string) {
     if (message === undefined) {
         message = "expected true but was: " + statement;

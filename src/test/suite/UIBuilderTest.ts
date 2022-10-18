@@ -3,10 +3,10 @@ import { CheckboxComponent } from "../../ts/UI/CheckboxComponent.js";
 import { RootViewComponent } from "../../ts/UI/RootViewComponent.js";
 import { UIBuilder } from "../../ts/UI/UIBuilder.js";
 import { BrowserWebSocketWrapper } from "../../ts/WebSocket/BrowserWebSocketWrapper.js";
-import { assertEquals, assertInstanceOf, fail } from "../Asserts.js";
+import { assertEquals, assertInstanceOf, fail } from "../scaffold/Asserts.js";
 import { MockDocumentWrapper } from "../mocks/MockDocumentWrapper.js";
 import { MockMessageBus } from "../mocks/MockMessageBus.js";
-import { TestCase } from "../TestCase.js";
+import { TestCase } from "../scaffold/TestCase.js";
 
 export class UIBuilderTest extends TestCase {
     public getTests(): (() => void)[] {

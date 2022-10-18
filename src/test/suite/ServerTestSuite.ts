@@ -1,4 +1,4 @@
-import { TestCase } from "../TestCase.js";
+import { TestCase } from "../scaffold/TestCase.js";
 import { UIMessageBusTest } from "./UIMessageBusTest.js";
 import { UIMessageTest } from "./UIMessageTest.js";
 import { BusBridgeServerTest } from "./BusBridgeServerTest.js";

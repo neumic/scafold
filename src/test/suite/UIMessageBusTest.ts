@@ -1,9 +1,9 @@
 import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
 import { MessageBus } from "../../ts/Message/MessageBus.js";
-import { assertEquals } from "../Asserts.js";
+import { assertEquals } from "../scaffold/Asserts.js";
 import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
-import { TestCase } from "../TestCase.js";
+import { TestCase } from "../scaffold/TestCase.js";
 
 export class UIMessageBusTest extends TestCase {
     public getTests(): (() => void)[] {

@@ -2,13 +2,13 @@ import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { MessageBus } from "../../ts/Message/MessageBus.js";
 import { BusBridgeServer } from "../../ts/Message/BusBridgeServer.js";
 import { GenericMessageEvent } from "../../ts/WebSocket/IWebSocketWrapper.js";
-import { assertEquals, assertNotNull } from "../Asserts.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { MockWebSocketServer } from "../mocks/MockWebSocketServer.js";
-import { TestCase } from "../TestCase.js";
+import { TestCase } from "../scaffold/TestCase.js";
 import { MockMessageSender } from "../mocks/MockMessageSender.js";
 import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
 import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
+import { assertNotNull, assertEquals } from "../scaffold/Asserts.js";
 
 export class BusBridgeServerTest extends TestCase {
     public getTests(): (() => void)[] {

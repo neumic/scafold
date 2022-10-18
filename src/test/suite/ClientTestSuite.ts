@@ -1,4 +1,4 @@
-import { TestCase } from "../TestCase.js";
+import { TestCase } from "../scaffold/TestCase.js";
 import { UIBuilderTest } from "./UIBuilderTest.js";
 import { UIMessageBusTest } from "./UIMessageBusTest.js";
 import { RootViewComponentTest } from "./RootViewComponentTest.js";

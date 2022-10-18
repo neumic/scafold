@@ -1,6 +1,6 @@
 import { testSuite } from './suite/ServerTestSuite.js';
-import { TestCaseResult } from './TestResult.js';
-import { runAllTests } from './TestRunner.js';
+import { TestCaseResult } from './scaffold/TestResult.js';
+import { runAllTests } from './scaffold/TestRunner.js';
 
 function printTests(testCaseResults: TestCaseResult[]) {
     console.debug = (message) => { };

@@ -1,6 +1,6 @@
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
-import { assertTrue } from "../Asserts.js";
-import { TestCase } from "../TestCase.js";
+import { assertTrue } from "../scaffold/Asserts.js";
+import { TestCase } from "../scaffold/TestCase.js";
 
 export class UIMessageTest extends TestCase {
     public getTests(): (() => void)[] {

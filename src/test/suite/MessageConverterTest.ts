@@ -1,9 +1,8 @@
-import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
 import { BoxUncheckedMessage } from "../../ts/Message/BoxUncheckedMessage.js";
 import { MessageConverter } from "../../ts/Message/MessageConverter.js";
-import { assertNotNull, assertNull, assertTrue } from "../Asserts.js";
-import { TestCase } from "../TestCase.js";
+import { assertNotNull, assertNull, assertTrue } from "../scaffold/Asserts.js";
+import { TestCase } from "../scaffold/TestCase.js";
 
 export class MessageConverterTest extends TestCase {
     public getTests(): (() => void)[] {
