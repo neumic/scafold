@@ -1,4 +1,4 @@
-import { IMessageBus } from "../Message/IMessageBus.js";
+import { IMessageBus } from "../Message/Bus/IMessageBus.js";
 import { AbstractViewComponent } from "./AbstractViewComponent.js";
 import { IDocumentWrapper } from "./IDocumentWrapper.js";
 

@@ -1,6 +1,6 @@
 import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
-import { MessageBus } from "../../ts/Message/MessageBus.js";
-import { BusBridgeServer } from "../../ts/Message/BusBridgeServer.js";
+import { MessageBus } from "../../ts/Message/Bus/MessageBus.js";
+import { BusBridgeServer } from "../../ts/Message/Bus/BusBridgeServer.js";
 import { GenericMessageEvent } from "../../ts/WebSocket/IWebSocketWrapper.js";
 import { MockWebSocket } from "../mocks/MockWebSocket.js";
 import { MockWebSocketServer } from "../mocks/MockWebSocketServer.js";

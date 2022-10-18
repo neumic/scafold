@@ -1,4 +1,4 @@
-import { BusBridgeClient } from "../../ts/Message/BusBridgeClient.js";
+import { BusBridgeClient } from "../../ts/Message/Bus/BusBridgeClient.js";
 import { CheckboxComponent } from "../../ts/UI/CheckboxComponent.js";
 import { RootViewComponent } from "../../ts/UI/RootViewComponent.js";
 import { UIBuilder } from "../../ts/UI/UIBuilder.js";

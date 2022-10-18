@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { WebSocketServer } from "ws";
-import { MessageBus } from "./Message/MessageBus.js";
-import { BusBridgeServer } from "./Message/BusBridgeServer.js";
+import { MessageBus } from "./Message/Bus/MessageBus.js";
+import { BusBridgeServer } from "./Message/Bus/BusBridgeServer.js";
 import { WebSocketServerWrapper } from "./WebSocket/WebSocketServerWrapper.js";
 
 const httpServer = createServer();

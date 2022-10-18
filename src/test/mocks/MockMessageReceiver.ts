@@ -1,5 +1,5 @@
 import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
-import { IMessageReceiver } from "../../ts/Message/IMessageReceiver.js";
+import { IMessageReceiver } from "../../ts/Message/Bus/IMessageReceiver.js";
 
 export class MockMessageReceiver implements IMessageReceiver {
     messagesReceived: AbstractMessage[] = [];

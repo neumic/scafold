@@ -1,6 +1,6 @@
 import { AbstractMessage } from "../Message/AbstractMessage.js";
-import { BusId } from "../Message/IBusEndpoint.js";
-import { IMessageReceiver } from "../Message/IMessageReceiver.js";
+import { BusId } from "../Message/Bus/IBusEndpoint.js";
+import { IMessageReceiver } from "../Message/Bus/IMessageReceiver.js";
 import { IWebSocketWrapper } from "./IWebSocketWrapper.js";
 
 export class WebSocketConnection implements IMessageReceiver {

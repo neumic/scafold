@@ -1,7 +1,7 @@
 import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
-import { IBusEndpoint } from "../../ts/Message/IBusEndpoint.js";
-import { IMessageBus } from "../../ts/Message/IMessageBus.js";
-import { IMessageReceiver } from "../../ts/Message/IMessageReceiver.js";
+import { IBusEndpoint } from "../../ts/Message/Bus/IBusEndpoint.js";
+import { IMessageBus } from "../../ts/Message/Bus/IMessageBus.js";
+import { IMessageReceiver } from "../../ts/Message/Bus/IMessageReceiver.js";
 
 type SendParameters = { message: AbstractMessage, sender: IBusEndpoint; };
 

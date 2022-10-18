@@ -1,4 +1,4 @@
-import { IBusEndpoint } from "../../ts/Message/IBusEndpoint.js";
+import { IBusEndpoint } from "../../ts/Message/Bus/IBusEndpoint.js";
 
 export class MockMessageSender implements IBusEndpoint {
     getBusId(): number {

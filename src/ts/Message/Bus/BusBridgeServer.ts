@@ -1,6 +1,6 @@
-import { IWebSocketServerWrapper } from "../WebSocket/IWebSocketServerWrapper.js";
-import { WebSocketConnection } from "../WebSocket/WebSocketConnection.js";
-import { MessageConverter } from "./MessageConverter.js";
+import { IWebSocketServerWrapper } from "../../WebSocket/IWebSocketServerWrapper.js";
+import { WebSocketConnection } from "../../WebSocket/WebSocketConnection.js";
+import { MessageConverter } from "../MessageConverter.js";
 import { MessageBus } from "./MessageBus.js";
 
 export class BusBridgeServer {

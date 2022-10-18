@@ -1,4 +1,4 @@
-import { MessageBus } from "./Message/MessageBus.js";
+import { MessageBus } from "./Message/Bus/MessageBus.js";
 import { DocumentWrapper } from "./UI/DocumentWrapper.js";
 import { UIBuilder } from "./UI/UIBuilder.js";
 

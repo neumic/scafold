@@ -1,7 +1,7 @@
-import { AbstractMessage } from "./AbstractMessage.js";
+import { AbstractMessage } from "../AbstractMessage.js";
 import { IBusEndpoint } from "./IBusEndpoint.js";
-import { IMessageBus } from "./IMessageBus.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
+import { IMessageBus } from "./IMessageBus.js";
 
 export class MessageBus implements IMessageBus {
     private receivers: IMessageReceiver[] = [];

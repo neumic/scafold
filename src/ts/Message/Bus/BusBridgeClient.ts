@@ -1,8 +1,8 @@
-import { IWebSocketWrapper } from "../WebSocket/IWebSocketWrapper.js";
-import { AbstractMessage } from "./AbstractMessage.js";
+import { IWebSocketWrapper } from "../../WebSocket/IWebSocketWrapper.js";
+import { AbstractMessage } from "../AbstractMessage.js";
 import { IMessageBus } from "./IMessageBus.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
-import { MessageConverter } from "./MessageConverter.js";
+import { MessageConverter } from "../MessageConverter.js";
 
 export class BusBridgeClient implements IMessageReceiver {
     public get webSocket(): IWebSocketWrapper {

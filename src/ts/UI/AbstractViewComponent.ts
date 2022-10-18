@@ -1,5 +1,5 @@
+import { IMessageBus } from "../Message/Bus/IMessageBus.js";
 import { IDocumentWrapper } from "../UI/IDocumentWrapper.js";
-import { IMessageBus } from "../Message/IMessageBus.js";
 
 export abstract class AbstractViewComponent {
     children: AbstractViewComponent[];

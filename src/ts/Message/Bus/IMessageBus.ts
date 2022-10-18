@@ -1,6 +1,6 @@
-import { AbstractMessage } from "./AbstractMessage.js";
-import { IBusEndpoint } from "./IBusEndpoint.js";
+import { AbstractMessage } from "../AbstractMessage.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
+import { IBusEndpoint } from "./IBusEndpoint.js";
 
 export interface IMessageBus {
     registerReceiver(receiver: IMessageReceiver): void;

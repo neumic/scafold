@@ -1,6 +1,6 @@
 import { AbstractMessage } from "../../ts/Message/AbstractMessage.js";
 import { ErrorMessage } from "../../ts/Message/ErrorMessage.js";
-import { MessageBus } from "../../ts/Message/MessageBus.js";
+import { MessageBus } from "../../ts/Message/Bus/MessageBus.js";
 import { assertEquals } from "../scaffold/Asserts.js";
 import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
 import { TestCase } from "../scaffold/TestCase.js";

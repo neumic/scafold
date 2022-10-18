@@ -1,8 +1,8 @@
 import { AbstractMessage } from "../Message/AbstractMessage.js";
 import { BoxCheckedMessage } from "../Message/BoxCheckedMessage.js";
 import { BoxUncheckedMessage } from "../Message/BoxUncheckedMessage.js";
-import { IMessageBus } from "../Message/IMessageBus.js";
-import { IMessageReceiver } from "../Message/IMessageReceiver.js";
+import { IMessageBus } from "../Message/Bus/IMessageBus.js";
+import { IMessageReceiver } from "../Message/Bus/IMessageReceiver.js";
 import { AbstractViewComponent } from "./AbstractViewComponent.js";
 import { DocumentWrapper } from "./DocumentWrapper.js";
 
