@@ -7,6 +7,7 @@ import { IBusEndpoint } from "../../ts/Message/Bus/IBusEndpoint.js";
 import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
 import { MockMessageReceiver } from "../mocks/MockMessageReceiver.js";
 import { assertEquals, assertNotNull } from "../scaffold/Asserts.js";
+import { GetStateMessage } from "../../ts/Message/GetStateMessage.js";
 
 export class BusBridgeClientTest extends TestCase {
     public getTests(): (() => void)[] {
@@ -16,8 +17,15 @@ export class BusBridgeClientTest extends TestCase {
                 const messageBus = new MessageBus;
 
                 const websocketClient = new BusBridgeClient(mockWebSocket, messageBus);
-                const messageSender = new TestMessageSender;
 
+                if (assertNotNull(mockWebSocket.onOpen)) {
+                    mockWebSocket.onOpen(new Event("test"));
+                }
+
+                assertEquals(1, mockWebSocket.messagesSent.length);
+                assertEquals(JSON.stringify(new GetStateMessage), mockWebSocket.messagesSent[0]);
+
+                const messageSender = new TestMessageSender;
                 const message1 = new TestMessage("test1");
                 const message2 = new BoxCheckedMessage();
 
@@ -26,8 +34,8 @@ export class BusBridgeClientTest extends TestCase {
 
                 messageBus.send(message1, messageSender);
 
-                assertEquals(1, mockWebSocket.messagesSent.length);
-                assertEquals(JSON.stringify(message1), mockWebSocket.messagesSent[0]);
+                assertEquals(2, mockWebSocket.messagesSent.length);
+                assertEquals(JSON.stringify(message1), mockWebSocket.messagesSent[1]);
 
                 const messageEvent = new MessageEvent<string>("type", { data: JSON.stringify(message2) });
 

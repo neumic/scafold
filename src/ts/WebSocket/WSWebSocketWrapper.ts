@@ -1,4 +1,4 @@
-import { IWebSocketWrapper } from "./IWebSocketWrapper.js";
+import { GenericEvent, IWebSocketWrapper } from "./IWebSocketWrapper.js";
 import { MessageEvent, WebSocket } from "ws";
 
 export class WSWebSocketWrapper implements IWebSocketWrapper {
@@ -6,6 +6,9 @@ export class WSWebSocketWrapper implements IWebSocketWrapper {
 
     constructor(webSocket: WebSocket) {
         this.webSocket = webSocket;
+    }
+    setOnOpen(callBack: (event: GenericEvent) => void): void {
+        this.webSocket.onopen = callBack;
     }
 
     setOnMessage(callBack: (messageEvent: MessageEvent) => void) {

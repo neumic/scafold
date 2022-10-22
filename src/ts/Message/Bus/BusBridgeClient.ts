@@ -3,6 +3,7 @@ import { AbstractMessage } from "../AbstractMessage.js";
 import { IMessageBus } from "./IMessageBus.js";
 import { IMessageReceiver } from "./IMessageReceiver.js";
 import { MessageConverter } from "../MessageConverter.js";
+import { GetStateMessage } from "../GetStateMessage.js";
 
 export class BusBridgeClient implements IMessageReceiver {
     public get webSocket(): IWebSocketWrapper {
@@ -16,6 +17,9 @@ export class BusBridgeClient implements IMessageReceiver {
     constructor(webSocket: IWebSocketWrapper, messageBus: IMessageBus) {
         this._webSocket = webSocket;
         this.messageBus = messageBus;
+        this.webSocket.setOnOpen(() => {
+            this.webSocket.send(JSON.stringify(new GetStateMessage));
+        });
 
         this._busId = Math.random();
 

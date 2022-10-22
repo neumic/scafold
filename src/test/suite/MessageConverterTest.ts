@@ -1,5 +1,6 @@
 import { BoxCheckedMessage } from "../../ts/Message/BoxCheckedMessage.js";
 import { BoxUncheckedMessage } from "../../ts/Message/BoxUncheckedMessage.js";
+import { GetStateMessage } from "../../ts/Message/GetStateMessage.js";
 import { MessageConverter } from "../../ts/Message/MessageConverter.js";
 import { assertNotNull, assertNull, assertTrue } from "../scaffold/Asserts.js";
 import { TestCase } from "../scaffold/TestCase.js";
@@ -26,6 +27,17 @@ export class MessageConverterTest extends TestCase {
                 const message = messageConverter.convert(jsonString);
                 if (assertNotNull(message)) {
                     assertTrue(BoxUncheckedMessage.recognize(message));
+                }
+            },
+
+            function testConvertsGetStateMessages() {
+                const messageConverter = new MessageConverter();
+
+                const jsonString = '{ "_name": "GetStateMessage" }';
+
+                const message = messageConverter.convert(jsonString);
+                if (assertNotNull(message)) {
+                    assertTrue(GetStateMessage.recognize(message));
                 }
             },
 
