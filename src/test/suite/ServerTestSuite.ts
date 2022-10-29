@@ -4,6 +4,7 @@ import { MessageTest } from "./MessageTest.js";
 import { BusBridgeServerTest } from "./BusBridgeServerTest.js";
 import { MessageConverterTest } from "./MessageConverterTest.js";
 import { WebSocketConnectionTest } from "./WebSocketConnectionTets.js";
+import { StateSaverTest } from "./StateSaverTest.js";
 
 export const testSuite: TestCase[] = [
     new MessageBusTest(),
@@ -11,4 +12,5 @@ export const testSuite: TestCase[] = [
     new BusBridgeServerTest(),
     new MessageConverterTest(),
     new WebSocketConnectionTest(),
+    new StateSaverTest(),
 ];
